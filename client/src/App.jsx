@@ -5,13 +5,14 @@ import Login from "./pages/Login";
 import Post from "./pages/Post";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import baseUrl from "./config/variable";
 
 function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const getUser = () => {
-      fetch("http://localhost:5000/auth/login/success", {
+      fetch(`${baseUrl}/auth/login/success`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -34,9 +35,9 @@ function App() {
     getUser();
   }, []);
 
-  console.log(user);
+  // console.log(user);
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <div>
         <Navbar user={user} />
         <Routes>
