@@ -3,6 +3,7 @@ const passport = require("passport");
 const CLIENT_URL = require('../config/variable')
 
 router.get("/login/success", (req, res) => {
+    console.log(CLIENT_URL);
     if (req.user) {
         res.status(200).json({
             success: true,
