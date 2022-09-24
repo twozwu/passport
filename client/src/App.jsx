@@ -14,7 +14,12 @@ function App() {
     const getUser = () => {
       fetch(`${baseUrl}/auth/login/success`, {
         method: "GET",
-        credentials: "include",
+        credentials: "include", // 資格證明
+        // headers: {
+        //   Accept: "application/json",
+        //   "Content-Type": "application/json",
+        //   "Access-Control-Allow-Credentials": true,
+        // },
       })
         .then((response) => {
           if (response.status === 200) return response.json();

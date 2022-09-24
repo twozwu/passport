@@ -10,14 +10,12 @@ const app = express();
 const CLIENT_URL = require("./config/variable");
 
 const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "https://twozwu.github.io",
-  ], // 只能包含domain，不包刮subdomain
+  origin: ["http://localhost:5173", "https://twozwu.github.io"], // 只能包含domain，不包刮subdomain
   // origin: true, // 如果允許cookie攜帶就不能用'*'
   // origin: "https://twozwu.github.io",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS", // 允許的方法
   credentials: true, // 允許cookie跨域攜帶
+  preflightContinue: true,
 };
 app.use(cors(corsOptions));
 
@@ -29,7 +27,7 @@ app.use(
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: false,
-    // cookie: { secure: true }
+    cookie: { secure: true, sameSite: "none" },
   })
 );
 
